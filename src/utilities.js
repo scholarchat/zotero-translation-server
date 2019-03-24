@@ -159,16 +159,13 @@ Zotero.Utilities.itemToAPIJSON = function(item) {
 					Zotero.debug("itemToAPIJSON: Discarded attachment: not an URL");
 					continue;
 				}
-				var apiItem = {
+				newItems.push({
 					itemType:   "attachment",
 					parentItem: newItem.key,
+					title:      attachment.title.toString(),
 					mimeType:   attachment.mimeType.toString(),
 					url:        attachment.url.toString(),
-				};
-				if (attachment.title) { // Optional field member, not all attachments have a title
-					apiItem['title'] = attachment.title.toString();
-				}
-				newItems.push(apiItem);
+				});
 			}
 		} else if((fieldID = Zotero.ItemFields.getID(field))) {
 			// if content is not a string, either stringify it or delete it
