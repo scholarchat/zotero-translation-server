@@ -84,9 +84,11 @@ describe("/web", function () {
 			.send(json);
 		assert.equal(response.statusCode, 200);
 		json = response.body;
-		assert.lengthOf(json, 2);
+		assert.lengthOf(json, 3);
 		assert.equal(json[0].title, 'A');
-		assert.equal(json[1].title, 'C');
+		assert.equal(json[1].parentItem, json[0].key);
+		assert.equal(json[1].url, url);
+		assert.equal(json[2].title, 'C');
 	});
 	
 	
